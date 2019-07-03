@@ -105,12 +105,12 @@
 		23FBBFBB22C5B98000377DF1 /* kakeibo */ = {
 			isa = PBXGroup;
 			children = (
-				23FBBFBC22C5B98000377DF1 /* AppDelegate.swift */,
-				23FBBFF522C6004100377DF1 /* productCell.swift */,
+				23FBBFC022C5B98000377DF1 /* Main.storyboard */,
 				23FBBFF622C6004100377DF1 /* productCell.xib */,
 				23FBBFBE22C5B98000377DF1 /* firstViewController.swift */,
-				23FBBFC022C5B98000377DF1 /* Main.storyboard */,
 				23FBBFED22C5BFDA00377DF1 /* secondViewController.swift */,
+				23FBBFBC22C5B98000377DF1 /* AppDelegate.swift */,
+				23FBBFF522C6004100377DF1 /* productCell.swift */,
 				23FBBFC622C5B98600377DF1 /* Assets.xcassets */,
 				23FBBFC822C5B98600377DF1 /* LaunchScreen.storyboard */,
 				23FBBFCB22C5B98600377DF1 /* Info.plist */,

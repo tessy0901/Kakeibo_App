@@ -8,26 +8,35 @@
 
 import UIKit
 
-class secondViewController: UIViewController, UITextFieldDelegate {
+class secondViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var productName: UITextField!
     @IBOutlet weak var productPrice: UITextField!
     @IBOutlet weak var OKButton: UIButton!
+    @IBOutlet weak var categoryPicker: UIPickerView!
     
     var reseaveName:String!
     var reseavePrice:String!
     var firstViewIndexPath:Int!
     
+    var categoryList:[String] = ["食費","学食","交通費","test1","tset2"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         productName.delegate = self
         productPrice.delegate = self
+        // ピッカー設定
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
+        categoryPicker.showsSelectionIndicator = true
 
         OKButton.isEnabled = false
         
         productName!.text = reseaveName
         productPrice!.text = reseavePrice
         // Do any additional setup after loading the view.
+        
+        print(categoryList.count)
     }
     @IBAction func nameEnter(_ sender: UITextField) {
         productName.text = sender.text
@@ -64,7 +73,6 @@ class secondViewController: UIViewController, UITextFieldDelegate {
         productPrice.text = productPrice.text
         OKButtonEnable()
     }
-    
 
     /*
     // MARK: - Navigation
@@ -77,3 +85,25 @@ class secondViewController: UIViewController, UITextFieldDelegate {
     */
 
 }
+
+extension secondViewController: UIPickerViewDataSource, UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryList.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryList[row]
+    }
+    
+    /*
+     // ドラムロール選択時
+     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+     self.textField.text = list[row]
+     }
+     */
+    
+}
+

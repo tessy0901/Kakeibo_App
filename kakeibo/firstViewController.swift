@@ -29,6 +29,7 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             productPrice.append(tablePrice)
         }
         productTable.reloadData()
+        print(productTitle[3])
     }
 
     override func viewDidLoad() {
