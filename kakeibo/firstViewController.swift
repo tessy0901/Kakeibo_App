@@ -11,24 +11,43 @@ import UIKit
 class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var productTitle:[String] = ["test1","test2","test3"]
     var productPrice:[String] = ["1114514","191980","364364"]
+    var productCategory:[String] = ["学食","交通費","交通費"]
+    
+    //カテゴリーの橋渡し配列
+    var categoryList:[String] = ["食費","学食","交通費","test1","tset2"]
     
     @IBOutlet weak var productTable: UITableView!
     @IBAction func reloadButton(_ sender: Any) { productTable.reloadData() }
     //tableへの値の追加 or 編集
     @IBAction func GoTofirstVC(_ segue : UIStoryboardSegue){
-        guard let imputsource = segue.source as? secondViewController else {
-            fatalError()
+        guard let inputsource = segue.source as? secondViewController else {
+            return
         }
-        guard let tableText = imputsource.productName!.text else { return  }
-        guard let tablePrice = imputsource.productPrice!.text else { return  }
-        if imputsource.firstViewIndexPath != nil{
-            productTitle[imputsource.firstViewIndexPath] = tableText
-            productPrice[imputsource.firstViewIndexPath] = tablePrice
+        guard let tableText = inputsource.productName!.text else { return  }
+        guard let tablePrice = inputsource.productPrice!.text else { return  }
+        guard let tableCategory = inputsource.inputCategory else { return }
+        if inputsource.firstViewIndexPath != nil{
+            productTitle[inputsource.firstViewIndexPath] = tableText
+            productPrice[inputsource.firstViewIndexPath] = tablePrice
+            productCategory[inputsource.firstViewIndexPath] = tableCategory
         }else {
             productTitle.append(tableText)
             productPrice.append(tablePrice)
+            productCategory.append(tableCategory)
         }
         productTable.reloadData()
+    }
+    @IBAction func SettingToFirst(_ segue: UIStoryboardSegue) {
+        guard let inputCategory = segue.source as? settingViewController else{
+            return
+        }
+        categoryList.append(inputCategory.newCategory.text!)
+        print("FVC:")
+        for i in categoryList{
+            print(i)
+        }
+        //let secondViewController: UIViewController = self.storyboard?.instantiateViewController(withIdentifier: "secondViewController") as! secondViewController
+        
     }
 
     override func viewDidLoad() {
@@ -42,6 +61,10 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         navigationItem.leftBarButtonItem = editButtonItem
         
         productTable.reloadData()
+        print("veiwDidLoad")
+        for i in productCategory{
+            print(i)
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -65,16 +88,25 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     override func prepare(for segue:UIStoryboardSegue, sender:Any?){
         //print(segue.identifier)
+        //インスタンス化
+        let secondViewController = segue.destination as! secondViewController
+        
+        secondViewController.categoryList.removeAll()
+        for i in categoryList {
+            secondViewController.categoryList.append(i)
+            print(i)
+        }
+        print(productCategory.count)
+        print(secondViewController.categoryList.count)
         if segue.identifier == "ToSecondVC" {
             let thisViewCellIndexPath = productTable.indexPathForSelectedRow
-            //インスタンス化
-            let secondViewController = segue.destination as! secondViewController
             //print(thisViewCellIndexPath!.row)
             //print(productTitle[thisViewCellIndexPath!.row])
             //print(productPrice[thisViewCellIndexPath!.row])
             secondViewController.reseaveName = productTitle[(thisViewCellIndexPath?.row)!]
             secondViewController.reseavePrice = productPrice[(thisViewCellIndexPath?.row)!]
             secondViewController.firstViewIndexPath = thisViewCellIndexPath!.row
+            //secondViewController.categoryList.append(contentsOf: productCategory)
         }
     }
     
@@ -89,6 +121,7 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         //dataを消してから
         productTitle.remove(at: indexPath.row)
         productPrice.remove(at: indexPath.row)
+        productCategory.remove(at: indexPath.row)
         
         //tableViewCellの削除
         tableView.deleteRows(at: [indexPath], with: .automatic)

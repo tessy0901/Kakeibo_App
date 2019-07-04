@@ -18,8 +18,9 @@ class secondViewController: UIViewController, UITextFieldDelegate{
     var reseaveName:String!
     var reseavePrice:String!
     var firstViewIndexPath:Int!
+    var inputCategory:String!
     
-    var categoryList:[String] = ["食費","学食","交通費","test1","tset2"]
+    var categoryList:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,10 @@ class secondViewController: UIViewController, UITextFieldDelegate{
         productName!.text = reseaveName
         productPrice!.text = reseavePrice
         // Do any additional setup after loading the view.
+        print("SVC")
+        for i in categoryList {
+            print(i)
+        }
         
         print(categoryList.count)
     }
@@ -98,12 +103,12 @@ extension secondViewController: UIPickerViewDataSource, UIPickerViewDelegate{
         return categoryList[row]
     }
     
-    /*
+    
      // ドラムロール選択時
      func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-     self.textField.text = list[row]
+     inputCategory = categoryList[row]
      }
-     */
+ 
     
 }
 
