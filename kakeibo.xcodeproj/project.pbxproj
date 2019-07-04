@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2316D96A22CDA4B60095530A /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316D96922CDA4B60095530A /* settingViewController.swift */; };
 		23FBBFBD22C5B98000377DF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FBBFBC22C5B98000377DF1 /* AppDelegate.swift */; };
 		23FBBFBF22C5B98000377DF1 /* firstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FBBFBE22C5B98000377DF1 /* firstViewController.swift */; };
 		23FBBFC222C5B98000377DF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23FBBFC022C5B98000377DF1 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2316D96922CDA4B60095530A /* settingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
 		23FBBFB922C5B98000377DF1 /* kakeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kakeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23FBBFBC22C5B98000377DF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23FBBFBE22C5B98000377DF1 /* firstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstViewController.swift; sourceTree = "<group>"; };
@@ -105,12 +107,13 @@
 		23FBBFBB22C5B98000377DF1 /* kakeibo */ = {
 			isa = PBXGroup;
 			children = (
-				23FBBFBC22C5B98000377DF1 /* AppDelegate.swift */,
-				23FBBFF522C6004100377DF1 /* productCell.swift */,
+				23FBBFC022C5B98000377DF1 /* Main.storyboard */,
 				23FBBFF622C6004100377DF1 /* productCell.xib */,
 				23FBBFBE22C5B98000377DF1 /* firstViewController.swift */,
-				23FBBFC022C5B98000377DF1 /* Main.storyboard */,
 				23FBBFED22C5BFDA00377DF1 /* secondViewController.swift */,
+				2316D96922CDA4B60095530A /* settingViewController.swift */,
+				23FBBFBC22C5B98000377DF1 /* AppDelegate.swift */,
+				23FBBFF522C6004100377DF1 /* productCell.swift */,
 				23FBBFC622C5B98600377DF1 /* Assets.xcassets */,
 				23FBBFC822C5B98600377DF1 /* LaunchScreen.storyboard */,
 				23FBBFCB22C5B98600377DF1 /* Info.plist */,
@@ -274,6 +277,7 @@
 				23FBBFF722C6004100377DF1 /* productCell.swift in Sources */,
 				23FBBFBF22C5B98000377DF1 /* firstViewController.swift in Sources */,
 				23FBBFBD22C5B98000377DF1 /* AppDelegate.swift in Sources */,
+				2316D96A22CDA4B60095530A /* settingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
