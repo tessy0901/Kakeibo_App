@@ -9,12 +9,12 @@
 import UIKit
 
 class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    var productTitle:[String] = ["test1","test2","test3"]
-    var productPrice:[String] = ["1114514","191980","364364"]
-    var productCategory:[String] = ["学食","交通費","交通費"]
+    var productTitle:[String] = ["電子マネーチャージ","うどん","アマゾンギフトカード"]
+    var productPrice:[String] = ["5000","360","2000"]
+    var productCategory:[String] = ["交通費","学食","交遊費"]
     
     //カテゴリーの橋渡し配列
-    var categoryList:[String] = ["食費","学食","交通費","test1","tset2"]
+    var categoryList:[String] = ["食費","学食","交通費","交遊費","消耗品","その他"]
     
     @IBOutlet weak var productTable: UITableView!
     @IBAction func reloadButton(_ sender: Any) { productTable.reloadData() }
@@ -62,10 +62,16 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         
         productTable.reloadData()
         print("veiwDidLoad")
-        for i in productCategory{
-            print(i)
-        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPathForSelectedRow = productTable.indexPathForSelectedRow {
+            productTable.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
     }
     
     //tableView類の設定
@@ -78,16 +84,22 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         
         cell.productLabel.text = productTitle[indexPath.row]
         cell.priceLabel.text = "¥"+productPrice[indexPath.row]
+        cell.categoryLabel.text = ":"+productCategory[indexPath.row]
+        
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        //tableView.estimatedRowHeight = 88 //セルの高さ
+        return 88//UITableView.automaticDimension //自動設定
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath.row)
         performSegue(withIdentifier: "ToSecondVC", sender: nil)
     }
     override func prepare(for segue:UIStoryboardSegue, sender:Any?){
-        //print(segue.identifier)
         //インスタンス化
         let secondViewController = segue.destination as! secondViewController
         
@@ -100,13 +112,9 @@ class firstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         print(secondViewController.categoryList.count)
         if segue.identifier == "ToSecondVC" {
             let thisViewCellIndexPath = productTable.indexPathForSelectedRow
-            //print(thisViewCellIndexPath!.row)
-            //print(productTitle[thisViewCellIndexPath!.row])
-            //print(productPrice[thisViewCellIndexPath!.row])
             secondViewController.reseaveName = productTitle[(thisViewCellIndexPath?.row)!]
             secondViewController.reseavePrice = productPrice[(thisViewCellIndexPath?.row)!]
             secondViewController.firstViewIndexPath = thisViewCellIndexPath!.row
-            //secondViewController.categoryList.append(contentsOf: productCategory)
         }
     }
     
